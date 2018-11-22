@@ -1,48 +1,21 @@
 (ns hello.core
-  (:gen-class))
+  (:gen-class) 
+  (:use clojure.string))
 
-(defn quick-sort [nums]
-  (if (< (count nums) 2) nums
-    (con`cat
-     (quick-sort (filter #(< % (first nums)) nums))
-     (filter #(= % (first nums)) nums)
-     (quick-sort (filter #(> % (first nums)) nums)))))
-
-;; (defn repeat-str-recursive [n s]
-;;  ((defn rec [co li]
-;;     (if (= co 0)
-;;       (clojure.string/join li) 
-;;       (rec (- co 1) (conj list s)))
-;;    ) n []))
-
-;; (defn repeat-str [n s]
-;;  (apply str (repeat n s)))
-
-;; (defn repeat-str2 [n s]
-;;  (->> [n s]
-;;       (apply repeat)
-;;       (apply str)))
-
-(defn covfefe[tw]
-  (if (re-find #"coverage" tw)
-    (clojure.string/replace tw #"coverage" "covfefe")
-    (str tw " covfefe")))
-
-(defn parse-html-color [color]
-  (if (re-find #"^#" color)
-    (if 
-
+(def preset-colors {:springgreen "#00ff7f" :aqua "#00ffff" :blue "#0000ff" :olivedrab "#6b8e23"})
+       
 (defn -main []
    (->>
-     '(2 3 1 4 0)
-     quick-sort
+     preset-colors
      println))
 
-;; (re-str 3 "Hello ")
-(->> [4 "H "] 
-     (apply repeat) 
-     (apply str))
-
-(covfefe "coverage")
-(covfefe "I have coverage for them")
-(covfefe "I dont know")
+(defn parse-html-color [color]
+  (defn end-parser [hex]
+    (println hex))
+  (def to-hex [digit]
+    (println digit))
+  (end-parser
+    (if (re-find #"^#" color) 
+      (to-hex color)
+      (get preset-colors (lower-case color))))
+ 
